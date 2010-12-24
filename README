@@ -1,0 +1,35 @@
+Ministrel is a simple Qt app to read out text files, email etc.
+
+USAGE
+
+It has two modes-
+1) Reading text files- Ministrel has the ability to remember where we read the file till and carry on from there next time. This is specially helpful when reading story books.
+2) Reading random text- Ministrel reads out whatever is pasted into the box. This could be email, wikipedia stuff etc.
+
+Ministrel has a very Simplistic Interface. The majority of the functionality is implemented in keyboard shortcuts.
+Ctrl+F opens a find box so we can search through the text. F3 goes to the next instance of the word.
+Escape closes the findbox(and reads on from the instance found)
+Clicking somewhere(while finding) makes reader read on from that sentence.
+Press Ctrl+N to launch a new instance of the app so as to read mail while reading a story book for example.
+
+Speed and Volume control is on the sliders labelled Speed and Volume. 
+
+INSTALLING
+
+You must have espeak-devel and qt-devel installed so as to be able to build Ministrel. The packages might be named differently on your distribution. You should be looking for espeak and dev(or devel) in the same package name. The same goes for qt and dev(or devel)
+Once you have the above installed,
+
+tar -xjf Ministrel.tar.bz2
+cd Ministrel
+qmake
+make
+make install
+
+Then just type
+Ministrel
+in any terminal to start the app.
+
+NOTE- Ministrel uses your home directory to store info like the speed you like or the volume you listen to your books at. As such, the root user and the other users could have different profiles. Make sure you run Ministrel as your user so as to make sure the correct profile is used.
+
+Ministrel is in very early development. I hope you like it. Send me feedback at -
+soumen08@gmail.com

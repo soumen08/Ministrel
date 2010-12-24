@@ -1,0 +1,5 @@
+Fix the highlight problem.
+Generalize espeak header path.
+Replace the textcharformat etc. with mere selections.
+Get back a few sentences and read from there.
+Complete the documentation.
