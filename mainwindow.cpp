@@ -74,13 +74,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     espeak_Initialize(AUDIO_OUTPUT_PLAYBACK,500,NULL,1);
 
+    fileopened=false; //this is here to ensure that the next line indeed sets text_list (via list_upd)
+
     ui->textEdit->setText("Open a File or Paste text to read.");
 
     connect(ui->textEdit,SIGNAL(cursorPositionChanged()),this,SLOT(pos_update()));
 
     ui->textEdit->ensureCursorVisible();
 
-    fileopened=false;
     ptr=NULL;
     paused=true;no_pos_upd=false;
     cur_pos=0;
@@ -136,13 +137,19 @@ void MainWindow::open()
 
 void MainWindow::update_list()
 {
+    /*!
+      Used to get the text from the text_edit into the text_list variable.
+      */
     if(!fileopened)
     {
+        no_pos_upd=true;
         QString text=ui->textEdit->toPlainText();
         text_list=text.split('.');
         for(int i=0;i<text_list.length();i++)
             text_list[i].append('.');
     }
+    pos=0;cur_pos=0;
+
 }
 
 void MainWindow::pos_update()
@@ -150,8 +157,11 @@ void MainWindow::pos_update()
     /*!
       Gets the new cursor position. Finds the sentence it belongs to, sets pos right before it so we can start reading from here.
       */
+    if(!fileopened)
+        return;
     if(!no_pos_upd)
     {
+        qDebug()<<"pos update called";
         cursor = ui->textEdit->textCursor();
         cur_pos=0;
         pos=0;
