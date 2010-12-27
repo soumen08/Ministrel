@@ -98,7 +98,7 @@ void MainWindow::open()
       Gets a filehandle checks for null on filehandler.
       Updates docdir.
       Reads all the text. Dumps it to the text edit. Splits using '.'. Appends a '.' to all the sentences.
-      Retreives the position from settings(defaults to 0)
+      Retreives the position from settings(defaults to 0). If the file has been read before, reads from 3 sentences back.
       Calculates a char position adding lengths of indivijual sentences.
       Puts the cursor there.
       */
@@ -123,6 +123,8 @@ void MainWindow::open()
         QStringList filenamelist=filename.split('/');
         filename=filenamelist[filenamelist.length() - 1];
         pos=settings.value(filename,0).toInt();
+        if(pos>5)
+            pos-=3;
 
         cursor=QTextCursor(ui->textEdit->document());
         cur_pos=0;
