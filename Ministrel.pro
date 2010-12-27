@@ -16,7 +16,7 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     speakthread.h \
-    ../../../../../../usr/include/espeak/speak_lib.h
+    /usr/include/espeak/speak_lib.h
 
 FORMS    += mainwindow.ui
 LIBS += -lespeak
