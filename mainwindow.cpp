@@ -341,5 +341,5 @@ void MainWindow::new_instance()
     /*!
       Uses system to make a new instance.
       */
-    system("Narrator");
+    system("Ministrel");
 }
