@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
       Sets title of MainWindow as Ministrel.
       Hides the find_box.
       Sets text on the buttons, and the labels (center them).
+      Makes sure only plaintext is shown.
       Connects the signals from buttons and sliders to the slots.
       Connects a QShortcut to find() slot.
       Connects the Esc button to find_quit() slot.
@@ -35,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->speed_label->setAlignment(Qt::AlignHCenter);
     ui->volume_label->setText("Volume");
     ui->volume_label->setAlignment(Qt::AlignHCenter);
+    ui->textEdit->setAcceptRichText(false);
 
     connect(ui->open_button,SIGNAL(clicked()),this,SLOT(open()));
     connect(ui->pause_button,SIGNAL(clicked()),this,SLOT(pause()));
