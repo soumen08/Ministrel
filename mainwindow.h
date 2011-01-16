@@ -10,6 +10,7 @@
 #include <QDebug>
 #include <QShortcut>
 #include <QTime>
+#include <QCloseEvent>
 
 namespace Ui {
     class MainWindow;
@@ -56,6 +57,7 @@ public slots:
     void new_instance();
     void book_finished();
     void update_list();
+    void closeEvent(QCloseEvent *);
 
 };
 

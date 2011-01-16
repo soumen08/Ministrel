@@ -259,6 +259,18 @@ void MainWindow::quit()
         settings.setValue(filename,pos);
     qApp->quit();
 }
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    /*!
+      The quit handler. The event is then accepted.
+      */
+    settings.setValue("volume",volume);
+    settings.setValue("speed",speed);
+    if(fileopened)
+        settings.setValue(filename,pos);
+    qApp->quit();
+    event->accept();
+}
 
 void MainWindow::change_speed(int speed_local)
 {
