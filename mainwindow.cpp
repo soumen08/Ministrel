@@ -199,19 +199,28 @@ void MainWindow::pause()
       Updates the button text.
       */
     if(ptr != NULL)
-        paused = !paused;
-    else
-    {
-        paused=!paused;
-        ptr = new SpeakThread(&text_list,&speed,&volume,&paused,&pos,this);
-        connect(ptr,SIGNAL(scroll()),this,SLOT(scroll()));
-        connect(ptr,SIGNAL(book_finished()),this,SLOT(book_finished()));
-        ptr->start();
-    }
-    if(paused)
-        ui->pause_button->setText("Read");
-    else
-        ui->pause_button->setText("Pause");
+        {
+            paused = !paused;
+            if(paused)
+            {
+                ptr->terminate();
+                ptr->wait();
+                return;
+            }
+            ptr->start();
+        }
+        else
+        {
+            paused=!paused;
+            ptr = new SpeakThread(&text_list,&speed,&volume,&paused,&pos,this);
+            connect(ptr,SIGNAL(scroll()),this,SLOT(scroll()));
+            connect(ptr,SIGNAL(book_finished()),this,SLOT(book_finished()));
+            ptr->start();
+        }
+        if(paused)
+            ui->pause_button->setText("Read");
+        else
+            ui->pause_button->setText("Pause");
 }
 
 void MainWindow::book_finished()
